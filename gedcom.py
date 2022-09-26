@@ -15,7 +15,7 @@ import sys
 from datetime import datetime
 
 Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')  
-Family = namedtuple('Family', 'Family_ID, Marriage_Date, Husband_ID, Wife_ID, Child_ID, Divorce_Date, Event_Date')  
+Family = namedtuple('Family', 'Family_ID, Marriage_Date, Husband_ID, Wife_ID, Child_ID, Divorce_Date')  
 
 def gedcom_file_parser_ind(file_name):
     file_contents = open(file_name,'r')
@@ -133,8 +133,6 @@ def gedcom_file_parser_fam(file_name):
                         fam_wife = ''
                         fam_chil = []
                         fam_div = ''
-                        fam_event = ''
-                        fam_event_date = ''
                         fam_id = line_details[1]
 
             if (line_details[0] == '1' and line_details[1] == 'HUSB'):
@@ -201,7 +199,10 @@ if __name__ == "__main__":
     inds = gedcom_file_parser_ind(file_path)
     
     # Get all the family details
-    #fam = gedcom_file_parser_fam(file_path)
+    fam = gedcom_file_parser_fam(file_path)
     
     for i in inds:
         print(i)
+    
+    for j in fam:
+	print(j)
