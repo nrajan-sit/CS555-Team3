@@ -101,51 +101,87 @@ def gedcom_file_parser_ind(file_name):
             
     Individual_list.append(Individual(ind_id, ind_name, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams))
     return Individual_list
-    
-# TODO    
-# def gedcom_file_parser_fam(file_name):
-#     file_contents = open(file_name,'r')
-#     fam_counter = 0
-#     fam_id = ''
-#     fam_marr = ''
-#     fam_husb = ''
-#     fam_wife = ''
-#     fam_chil = ''
-#     fam_div = ''
-#     fam_event = ''
-#     fam_event_date = ''
-#     Family_list = []
-#     previous_tag = ''
-    
-#     for file_line in file_contents:
-#         line_details = file_line.split()
         
-#         if (len(line_details) > 2):
-#             #print('---------------------')
-#             #print('0:', line_details)
-            
-#             if (line_details[0] == '0' and line_details[2] == 'FAM' ):
-#                     if fam_counter == 0:
-#                         fam_id = line_details[1]
-#                         fam_counter = 1
-#                     else:
-#                         Family_list.append(Family(fam_id, fam_marr, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams))
-#                         fam_id = ''
-#                         fam_marr = ''
-#                         fam_husb = ''
-#                         fam_wife = ''
-#                         fam_chil = ''
-#                         fam_div = ''
-#                         fam_event = ''
-#                         fam_event_date = ''
-#                         fam_id = line_details[1]
-    
-            
-#         # store the tag for date calculations
-#         previous_tag = line_details[1]
-            
-#     Family_list.append(Family(fam_id, fam_marr, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams))
-#     return Family_list    
+def gedcom_file_parser_fam(file_name):
+    file_contents = open(file_name,'r')
+    fam_counter = 0
+    fam_id = ''
+    fam_marr = ''
+    fam_husb = ''
+    fam_wife = ''
+    fam_chil = []
+    fam_div = ''
+    Family_list = []
+    previous_tag = ''
+
+    for file_line in file_contents:
+        line_details = file_line.split()
+
+        if (len(line_details) > 2):
+            #print('---------------------')
+            #print('0:', line_details)
+
+            if (line_details[0] == '0' and line_details[2] == 'FAM' ):
+                    if fam_counter == 0:
+                        fam_id = line_details[1]
+                        fam_counter = 1
+                    else:
+                        Family_list.append(Family(fam_id, fam_marr, fam_husb, fam_wife, fam_chil, fam_div))
+                        fam_id = ''
+                        fam_marr = ''
+                        fam_husb = ''
+                        fam_wife = ''
+                        fam_chil = []
+                        fam_div = ''
+                        fam_event = ''
+                        fam_event_date = ''
+                        fam_id = line_details[1]
+
+            if (line_details[0] == '1' and line_details[1] == 'HUSB'):
+                fam_husb = line_details[2]
+
+            if (line_details[0] == '1' and line_details[1] == 'WIFE'):
+                fam_wife = line_details[2]
+
+            if (line_details[0] == '1' and line_details[1] == 'CHIL'):
+                fam_chil.append(line_details[2])
+
+            if (line_details[0] == '2' and line_details[1] == 'DATE'):
+                if(line_details[3] == 'JAN'):
+                    month = '01'
+                if(line_details[3] == 'FEB'):
+                    month = '02'
+                if(line_details[3] == 'MAR'):
+                    month = '03'
+                if(line_details[3] == 'APR'):
+                    month = '04'
+                if(line_details[3] == 'MAY'):
+                    month = '05'
+                if(line_details[3] == 'JUN'):
+                    month = '06'
+                if(line_details[3] == 'JUL'):
+                    month = '07'
+                if(line_details[3] == 'AUG'):
+                    month = '08'
+                if(line_details[3] == 'SEP'):
+                    month = '09'
+                if(line_details[3] == 'OCT'):
+                    month = '10'
+                if(line_details[3] == 'NOV'):
+                    month = '11'
+                if(line_details[3] == 'DEC'):
+                    month = '12'
+                if previous_tag == 'MARR':
+                    fam_marr = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
+                if previous_tag == 'DIV':
+                    fam_div = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
+
+        # store the tag for date calculations
+        previous_tag = line_details[1]
+
+    Family_list.append(Family(fam_id, fam_marr, fam_husb, fam_wife, fam_chil, fam_div))
+    return Family_list    
+
 #####################################
 # Main
 #####################################
