@@ -71,7 +71,7 @@ def gedcom_file_parser_ind(file_name):
                 ind_famc = "{'" + line_details[2].replace('@',"") + "'}"
                 
             if (line_details[0] == '1' and line_details[1] == 'FAMS'):
-                ind_fams = "{'" + line_details[2].replace('@',"") + "'}"
+                ind_fams += line_details[2].replace('@',"") + ' '
                 
             # Dates are on the next line
             if (line_details[0] == '2' and line_details[1] == 'DATE'):
@@ -109,8 +109,7 @@ def gedcom_file_parser_ind(file_name):
             
     Individual_list.append([ind_id, ind_name, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams])
     return Individual_list
-    
- #TODO    
+      
 def gedcom_file_parser_fam(file_name):
     file_contents = open(file_name,'r')
     fam_counter = 0
@@ -210,6 +209,10 @@ def list_to_str(ls):
 
 
     op += "}"
+    
+    if op == '{}':
+        op = 'NA'
+    
     return op
 
 
@@ -220,13 +223,13 @@ def list_to_str(ls):
 if __name__ == "__main__":  
     
     # Get the ged file it needs to be in same folder
-    file_path = 'ged_input_file.ged'
+    #file_path = 'ged_input_file.ged'
     
     # input parameters
-    #inputs = len(sys.argv)
+    inputs = len(sys.argv)
     #print("Total inputs passed:", inputs)
     
-    #file_path = sys.argv[1]
+    file_path = sys.argv[1]
     
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
@@ -244,20 +247,25 @@ if __name__ == "__main__":
     dataframe.insert(4, "Age",age , True)
     dataframe = dataframe.replace('','NA')
     dataframe.insert(5, "Alive",dataframe['Death']=='NA' , True)
-
+    
+    spouses = dataframe['Spouse'].apply(list_to_str)
+    dataframe = dataframe.drop('Spouse',axis=1)
+    
     output = StringIO()
     dataframe.set_index('ID').to_csv(output)
     output.seek(0)
     pt = prettytable.from_csv(output)
+    pt.add_column("Spouse",spouses)
     print('Individuals')
     print (pt)
 
     fam = gedcom_file_parser_fam(file_path)
     dataframe_family = pd.DataFrame(fam)
     dataframe_family.columns = ['ID','Married','Divorced','Husband ID','Wife ID','Children']
+    #dataframe_family.sort_values(by='ID')
     
-    dataframe_family['new'] = dataframe_family['ID'].str.extract('(\d+)').astype(int)
-    dataframe_family = dataframe_family.sort_values(by=['new'], ascending=True).drop('new', axis=1)
+    #dataframe_family['new'] = dataframe_family['ID'].str.extract('(\d+)').astype(int)
+    #dataframe_family = dataframe_family.sort_values(by=['new'], ascending=True).drop('new', axis=1)
     
     dataframe_family = dataframe_family.replace('','NA')
 
@@ -283,6 +291,7 @@ if __name__ == "__main__":
     ptf = prettytable.from_csv(output)
     ptf.add_column("Children",cldn)
     print('Families')
+    ptf.sortby = "ID"
     print (ptf)
 
     
