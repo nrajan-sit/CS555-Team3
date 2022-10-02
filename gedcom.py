@@ -20,10 +20,10 @@ import numpy as np
 from io import StringIO
 import prettytable
 
-
+from user_stories_sprint_1 import *
 
 Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')  
-Family = namedtuple('Family', 'Family_ID, Marriage_Date, Husband_ID, Wife_ID, Child_ID, Divorce_Date, Event_Date')  
+Family = namedtuple('Family', 'Family_ID, Marriage_Date, Divorce_Date, Husband_ID, Wife_ID, Child_ID, Event_Date')  
 
 def gedcom_file_parser_ind(file_name):
     file_contents = open(file_name,'r')
@@ -223,13 +223,13 @@ def list_to_str(ls):
 if __name__ == "__main__":  
     
     # Get the ged file it needs to be in same folder
-    #file_path = 'ged_input_file.ged'
+    file_path = 'gedcom_sprint_1.ged'
     
     # input parameters
     inputs = len(sys.argv)
     #print("Total inputs passed:", inputs)
     
-    file_path = sys.argv[1]
+    #file_path = sys.argv[1]
     
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
@@ -294,4 +294,11 @@ if __name__ == "__main__":
     ptf.sortby = "ID"
     print (ptf)
 
-    
+    #create output file
+    with open('gedcom_output.txt', 'w') as f:
+        f.write('')
+        
+    #US03
+    us03_birth_before_death(inds)
+    #US04
+    us04_marriage_before_divorce(fam)

@@ -124,14 +124,14 @@ class ged_com_unit_test(unittest.TestCase):
         test_fam = []
         fam_id = 'F100'
         marr_date = '2010-01-01'
+        div_date = '2009-01-01'
         hus_id = 'I100'
         wife_id = 'I101'
         child_id = 'I103'
-        div_date = '2009-01-01'
         event_date = ''
 
-        test_fam.append([fam_id, marr_date, hus_id, wife_id,
-                        child_id, div_date, event_date])
+        test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
+                        child_id, event_date])
         ret_val = us04_marriage_before_divorce(test_fam)
 
         #print(test_fam)
@@ -153,8 +153,8 @@ class ged_com_unit_test(unittest.TestCase):
         div_date = '2019-01-01'
         event_date = ''
 
-        test_fam.append([fam_id, marr_date, hus_id, wife_id,
-                        child_id, div_date, event_date])
+        test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
+                        child_id, event_date])
         ret_val = us04_marriage_before_divorce(test_fam)
 
         #print(test_fam)
@@ -176,8 +176,8 @@ class ged_com_unit_test(unittest.TestCase):
         div_date = ''
         event_date = ''
 
-        test_fam.append([fam_id, marr_date, hus_id, wife_id,
-                        child_id, div_date, event_date])
+        test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
+                        child_id, event_date])
         ret_val = us04_marriage_before_divorce(test_fam)
 
         #print(test_fam)
@@ -199,8 +199,8 @@ class ged_com_unit_test(unittest.TestCase):
         div_date = '2019-01-01'
         event_date = ''
 
-        test_fam.append([fam_id, marr_date, hus_id, wife_id,
-                        child_id, div_date, event_date])
+        test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
+                        child_id, event_date])
         ret_val = us04_marriage_before_divorce(test_fam)
 
         #print(test_fam)
@@ -220,8 +220,8 @@ class ged_com_unit_test(unittest.TestCase):
         div_date = '2019-01-01'
         event_date = ''
 
-        test_fam.append([fam_id, marr_date, hus_id, wife_id,
-                        child_id, div_date, event_date])
+        test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
+                        child_id, event_date])
         ret_val = us04_marriage_before_divorce(test_fam)
 
         #print(test_fam)

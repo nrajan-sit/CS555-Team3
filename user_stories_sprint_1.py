@@ -17,7 +17,7 @@ def us03_birth_before_death(Individual):
                     i[1].replace('/', '') + ' (' + i[0] + ') ' + \
                     'occurs after ' + _gender + ' death date'
                 ret_val = False
-                #print(error_msg)
+                print(error_msg)
                 with open('gedcom_output.txt', 'a') as f:
                     f.write(error_msg)
                     f.write('\n')
@@ -29,12 +29,12 @@ def us04_marriage_before_divorce(Family):
     ret_val = True
     for i in Family:
         #print(i)
-        if (i[5] != ''):
-            if(i[1] > i[5]):
+        if (i[2] != ''):
+            if(i[1] > i[2]):
                 error_msg = 'Error US04: Marriage of Family ' + \
                     i[0] + ' occurs after their divorce date'
                 ret_val = False
-                #print(error_msg)
+                print(error_msg)
                 with open('gedcom_output.txt', 'a') as f:
                     f.write(error_msg)
                     f.write('\n')
