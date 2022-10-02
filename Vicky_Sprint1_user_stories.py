@@ -43,7 +43,7 @@ def birth_before_parents_death(Individual, Family):
                             with open('gedcom_output.txt', 'a') as f:
                                 f.write(error)
                                 f.write('\n')
-                                f.close()
+
 
         if(parent2_death != ''):
             for c in children_id:
@@ -64,7 +64,7 @@ def birth_before_parents_death(Individual, Family):
                             with open('gedcom_output.txt', 'a') as f:
                                 f.write(error)
                                 f.write('\n')
-                                f.close()
+
 
     return eval
 
@@ -109,7 +109,7 @@ def parents_too_old(Individual, Family):
                         with open('gedcom_output.txt', 'a') as f:
                             f.write(anomaly)
                             f.write('\n')
-                            f.close()
+
 
         for c in children_id:
             for d in Individual:
@@ -126,5 +126,5 @@ def parents_too_old(Individual, Family):
                         with open('gedcom_output.txt', 'a') as f:
                             f.write(anomaly)
                             f.write('\n')
-                            f.close()
+        
     return eval
