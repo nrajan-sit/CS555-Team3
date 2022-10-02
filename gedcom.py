@@ -13,6 +13,7 @@ import sys
 
 # Import datetime package
 from datetime import datetime
+import datetime as dt
 
 import pandas as pd
 import numpy as np
@@ -20,18 +21,17 @@ import numpy as np
 from io import StringIO
 import prettytable
 
-from user_stories_sprint_1 import *
-from Vicky_Sprint1_user_stories import *
 
-Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')
-Family = namedtuple('Family', 'Family_ID, Marriage_Date, Divorce_Date, Husband_ID, Wife_ID, Child_ID, Event_Date')
+
+Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')  
+Family = namedtuple('Family', 'Family_ID, Marriage_Date, Husband_ID, Wife_ID, Child_ID, Divorce_Date, Event_Date')  
 
 def gedcom_file_parser_ind(file_name):
     file_contents = open(file_name,'r')
     ind_counter = 0
     ind_id = ''
     ind_name = ''
-    ind_sex = ''
+    ind_sex = '' 
     ind_dob = ''
     ind_dod = ''
     ind_famc = ''
@@ -39,14 +39,14 @@ def gedcom_file_parser_ind(file_name):
     temp_dob = ''
     Individual_list = []
     previous_tag = ''
-
+    
     for file_line in file_contents:
         line_details = file_line.split()
-
+        
         if (len(line_details) > 2):
             #print('---------------------')
             #print('0:', line_details)
-
+            
             if (line_details[0] == '0' and line_details[2] == 'INDI' ):
                     if ind_counter == 0:
                         ind_id = line_details[1].replace('@',"")
@@ -55,25 +55,25 @@ def gedcom_file_parser_ind(file_name):
                         Individual_list.append([ind_id, ind_name, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams])
                         ind_id = ''
                         ind_name = ''
-                        ind_sex = ''
+                        ind_sex = '' 
                         ind_dob = ''
                         ind_dod = ''
                         ind_famc = ''
                         ind_fams = ''
                         ind_id = line_details[1].replace('@',"")
-
+    
             if (line_details[0] == '1' and line_details[1] == 'NAME'):
                 ind_name = line_details[2] + ' ' +line_details[3]
-
+                    
             if (line_details[0] == '1' and line_details[1] == 'SEX'):
                 ind_sex = line_details[2]
-
+                
             if (line_details[0] == '1' and line_details[1] == 'FAMC'):
                 ind_famc = "{'" + line_details[2].replace('@',"") + "'}"
-
+                
             if (line_details[0] == '1' and line_details[1] == 'FAMS'):
                 ind_fams += line_details[2].replace('@',"") + ' '
-
+                
             # Dates are on the next line
             if (line_details[0] == '2' and line_details[1] == 'DATE'):
                 if(line_details[3] == 'JAN'):
@@ -104,13 +104,13 @@ def gedcom_file_parser_ind(file_name):
                     ind_dob = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
                 if previous_tag == 'DEAT':
                     ind_dod = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
-
+            
         # store the tag for date calculations
         previous_tag = line_details[1]
-
+            
     Individual_list.append([ind_id, ind_name, ind_sex, ind_dob, ind_dod, ind_famc, ind_fams])
     return Individual_list
-
+      
 def gedcom_file_parser_fam(file_name):
     file_contents = open(file_name,'r')
     fam_counter = 0
@@ -131,7 +131,7 @@ def gedcom_file_parser_fam(file_name):
         if (len(line_details) > 2):
              #print('---------------------')
              #print('0:', line_details)
-
+            
             if (line_details[0] == '0' and line_details[2] == 'FAM' ):
                      if fam_counter == 0:
                          fam_id = line_details[1].replace('@',"")
@@ -152,7 +152,7 @@ def gedcom_file_parser_fam(file_name):
                          fam_husb = line_details[2].replace('@',"")
             if (line_details[0] == '1' and line_details[1] == 'WIFE'):
                          fam_wife = line_details[2].replace('@',"")
-
+                         
             if (line_details[0] == '1' and line_details[1] == 'CHIL'):
                          fam_chil += line_details[2].replace('@',"")+' '
 
@@ -185,13 +185,13 @@ def gedcom_file_parser_fam(file_name):
                             fam_marr = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
                         if previous_tag == 'DIV':
                             fam_div = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
+                         
+                         
 
-
-
-
+            
          # store the tag for date calculations
         previous_tag = line_details[1]
-
+        
     Family_list.append([fam_id, fam_marr, fam_div, fam_husb, fam_wife, fam_chil])
     return Family_list
 
@@ -210,102 +210,110 @@ def list_to_str(ls):
 
 
     op += "}"
-
+    
     if op == '{}':
         op = 'NA'
-
+    
     return op
 
 
-#####################################
-# Main
-#####################################
 
-if __name__ == "__main__":
 
-    # Get the ged file it needs to be in same folder
-    file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
 
-    # input parameters
-    inputs = len(sys.argv)
-    #print("Total inputs passed:", inputs)
 
-    #file_path = sys.argv[1]
 
-    # Get all the individual's details
-    inds = gedcom_file_parser_ind(file_path)
 
-    # Get all the family details
+def print_indi(file_path):
     #fam = gedcom_file_parser_fam(file_path)
-
+    inds = gedcom_file_parser_ind(file_path)
+    
     dataframe = pd.DataFrame(inds)
 
     dataframe.columns = ['ID','Name','Gender','Birthday','Death','Child','Spouse']
     dataframe.sort_values(by=['ID'])
-
+    
     age = datetime.today().date() - dataframe['Birthday']
     age = age.apply(lambda x: int(x.days/365))
     dataframe.insert(4, "Age",age , True)
     dataframe = dataframe.replace('','NA')
     dataframe.insert(5, "Alive",dataframe['Death']=='NA' , True)
-
+    
     spouses = dataframe['Spouse'].apply(list_to_str)
     dataframe = dataframe.drop('Spouse',axis=1)
 
-    output = StringIO()
-    dataframe.set_index('ID').to_csv(output)
-    output.seek(0)
-    pt = prettytable.from_csv(output)
-    pt.add_column("Spouse",spouses)
-    print('Individuals')
-    print (pt)
+    if __name__ == "__main__": 
+        output = StringIO()
+        dataframe.set_index('ID').to_csv(output)
+        output.seek(0)
+        pt = prettytable.from_csv(output)
+        pt.add_column("Spouse",spouses)
+        print('Individuals')
+        print (pt)
+    
+    return(dataframe)
 
+def print_fam(file_path,dataframe):
     fam = gedcom_file_parser_fam(file_path)
     dataframe_family = pd.DataFrame(fam)
     dataframe_family.columns = ['ID','Married','Divorced','Husband ID','Wife ID','Children']
     #dataframe_family.sort_values(by='ID')
-
+    
     #dataframe_family['new'] = dataframe_family['ID'].str.extract('(\d+)').astype(int)
     #dataframe_family = dataframe_family.sort_values(by=['new'], ascending=True).drop('new', axis=1)
-
+    
     dataframe_family = dataframe_family.replace('','NA')
 
     husband_id = np.array(dataframe_family['Husband ID'])
     husband_array = []
     for h in husband_id:
         husband_array.append(dataframe.loc[dataframe['ID'] == h]['Name'].values[0])
-
+    
     dataframe_family.insert(4, "Husband Name",husband_array , True)
 
     wife_id = np.array(dataframe_family['Wife ID'])
     wife_array = []
     for w in wife_id:
         wife_array.append(dataframe.loc[dataframe['ID'] == w]['Name'].values[0])
-
+    
     dataframe_family.insert(6, "Wife Name",wife_array , True)
     cldn = dataframe_family['Children'].apply(list_to_str)
     dataframe_family = dataframe_family.drop('Children',axis=1)
 
-    output = StringIO()
-    dataframe_family.set_index('ID').to_csv(output)
-    output.seek(0)
-    ptf = prettytable.from_csv(output)
-    ptf.add_column("Children",cldn)
-    print('Families')
-    ptf.sortby = "ID"
-    print (ptf)
+    if __name__ == "__main__":   
+        output = StringIO()
+        dataframe_family.set_index('ID').to_csv(output)
+        output.seek(0)
+        ptf = prettytable.from_csv(output)
+        ptf.add_column("Children",cldn)
+        print('Families')
+        ptf.sortby = "ID"
+        print (ptf)
+    return (dataframe_family)
 
-    #create output file
-    with open('gedcom_output.txt', 'w') as f:
-        f.write('')
 
-    #US03
-    us03_birth_before_death(inds)
-    #US04
-    us04_marriage_before_divorce(fam)
 
-    #US09
-    birth_before_parents_death(inds, fam)
+#####################################
+# Main
+#####################################
 
-    #US12
-    parents_too_old(inds, fam)
+if __name__ == "__main__":  
+    
+    # Get the ged file it needs to be in same folder
+    #file_path = 'ged_input_file_test.ged'
+    
+    # input parameters
+    inputs = len(sys.argv)
+    print("Total inputs passed:", inputs)
+    
+    file_path = sys.argv[1]
+    
+    # Get all the individual's details
+    
+    
+    # Get all the family details
+    #fam = gedcom_file_parser_fam(file_path)
+    
+    dataframe = print_indi(file_path)
+    dataframe_family = print_fam(file_path,dataframe)
+    
+
