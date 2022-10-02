@@ -31,8 +31,13 @@ def birth_before_parents_death(Individual, Family):
                         child_name = d[1].replace('/',"")
 
                         if (parent1_death <= child_birth):
-                            print("Error US09: Birthday of " + child_name + " occurs after his/her father's death")
+                            error=("Error US09: Birthday of " + child_name + " occurs after his/her father's death")
+                            print(error)
                             eval = False
+                            with open('gedcom_output.txt', 'a') as f:
+                                f.write(error)
+                                f.write('\n')
+                                f.close()
 
         if(parent2_death != ''):
             for c in children_id:
@@ -42,11 +47,15 @@ def birth_before_parents_death(Individual, Family):
                         child_name = d[1].replace('/',"")
 
                         if (parent2_death <= child_birth):
-                            print("Error US09: Birthday of " + child_name + " occurs after his/her mother's death")
+                            error = ("Error US09: Birthday of " + child_name + " occurs after his/her mother's death")
+                            print(error)
                             eval = False
+                            with open('gedcom_output.txt', 'a') as f:
+                                f.write(error)
+                                f.write('\n')
+                                f.close()
 
-
-
+    return eval
 
 #US12 parents not too old (mother less than 60 years older and father less than 80 years older than children)
 def parents_too_old(Individual, Family):
@@ -83,9 +92,13 @@ def parents_too_old(Individual, Family):
                     difference = child_birth_int - husband_birth_int
 
                     if (difference >= 80):
-                        print("Anomaly US12: Father of " + child_name + " 80 years older than child")
+                        anomaly = ("Anomaly US12: Father of " + child_name + " 80 years older than child")
+                        print(anomaly)
                         eval = False
-
+                        with open('gedcom_output.txt', 'a') as f:
+                            f.write(anomaly)
+                            f.write('\n')
+                            f.close()
 
         for c in children_id:
             for d in Individual:
@@ -96,5 +109,11 @@ def parents_too_old(Individual, Family):
                     difference = child_birth_int - wife_birth_int
 
                     if (difference >= 60):
-                        print("Anomaly US12: Mother of " + child_name + " 60 years older than child")
+                        anomaly = ("Anomaly US12: Mother of " + child_name + " 60 years older than child")
+                        print(anomaly)
                         eval = False
+                        with open('gedcom_output.txt', 'a') as f:
+                            f.write(anomaly)
+                            f.write('\n')
+                            f.close()
+    return eval
