@@ -29,9 +29,15 @@ def birth_before_parents_death(Individual, Family):
                     if (c == d[0]):
                         child_birth = d[3]
                         child_name = d[1].replace('/',"")
+                        child_gender = ''
+                        if (d[2] == 'M'):
+                            child_gender = 'his'
+                        if (d[2] == 'F'):
+                            child_gender = 'her'
+
 
                         if (parent1_death <= child_birth):
-                            error=("Error US09: Birthday of " + child_name + " occurs after his/her father's death")
+                            error=("Error US09: Birthday of " + child_name + " occurs after " + child_gender + " father's death")
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
@@ -45,9 +51,14 @@ def birth_before_parents_death(Individual, Family):
                     if (c == d[0]):
                         child_birth = d[3]
                         child_name = d[1].replace('/',"")
+                        child_gender = ''
+                        if (d[2] == 'M'):
+                            child_gender = 'his'
+                        if (d[2] == 'F'):
+                            child_gender = 'her'
 
                         if (parent2_death <= child_birth):
-                            error = ("Error US09: Birthday of " + child_name + " occurs after his/her mother's death")
+                            error = ("Error US09: Birthday of " + child_name + " occurs after " + child_gender + " mother's death")
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
@@ -92,7 +103,7 @@ def parents_too_old(Individual, Family):
                     difference = child_birth_int - husband_birth_int
 
                     if (difference >= 80):
-                        anomaly = ("Anomaly US12: Father of " + child_name + " 80 years older than child")
+                        anomaly = ("Anomaly US12: Father of " + child_name + " is 80 years older than " + child_name)
                         print(anomaly)
                         eval = False
                         with open('gedcom_output.txt', 'a') as f:
@@ -109,7 +120,7 @@ def parents_too_old(Individual, Family):
                     difference = child_birth_int - wife_birth_int
 
                     if (difference >= 60):
-                        anomaly = ("Anomaly US12: Mother of " + child_name + " 60 years older than child")
+                        anomaly = ("Anomaly US12: Mother of " + child_name + " is 60 years older than " + child_name)
                         print(anomaly)
                         eval = False
                         with open('gedcom_output.txt', 'a') as f:
