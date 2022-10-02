@@ -28,6 +28,7 @@ def birth_before_parents_death(Individual, Family):
                 for d in Individual:
                     if (c == d[0]):
                         child_birth = d[3]
+                        child_id = d[0]
                         child_name = d[1].replace('/',"")
                         child_gender = ''
                         if (d[2] == 'M'):
@@ -37,7 +38,7 @@ def birth_before_parents_death(Individual, Family):
 
 
                         if (parent1_death <= child_birth):
-                            error=("Error US09: Birthday of " + child_name + " occurs after " + child_gender + " father's death")
+                            error=("Error US09: Birthday of " + child_name + " ("+ child_id + ") occurs after " + child_gender + " father's death")
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
@@ -50,6 +51,7 @@ def birth_before_parents_death(Individual, Family):
                 for d in Individual:
                     if (c == d[0]):
                         child_birth = d[3]
+                        child_id = d[0]
                         child_name = d[1].replace('/',"")
                         child_gender = ''
                         if (d[2] == 'M'):
@@ -58,7 +60,7 @@ def birth_before_parents_death(Individual, Family):
                             child_gender = 'her'
 
                         if (parent2_death <= child_birth):
-                            error = ("Error US09: Birthday of " + child_name + " occurs after " + child_gender + " mother's death")
+                            error = ("Error US09: Birthday of " + child_name + " ("+ child_id + ") occurs after " + child_gender + " mother's death")
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
@@ -97,13 +99,14 @@ def parents_too_old(Individual, Family):
             for d in Individual:
                 if (c == d[0]):
                     child_birth = d[3]
+                    child_id = d[0]
                     child_birth_int = child_birth.year + child_birth.month+ child_birth.day
                     #print(child_birth_int)
                     child_name = d[1].replace('/',"")
                     difference = child_birth_int - husband_birth_int
 
                     if (difference >= 80):
-                        anomaly = ("Anomaly US12: Father of " + child_name + " is 80 years older than " + child_name)
+                        anomaly = ("Anomaly US12: Father of " + child_name +" (" +child_id+ ") is 80 years older than " + child_name)
                         print(anomaly)
                         eval = False
                         with open('gedcom_output.txt', 'a') as f:
@@ -115,16 +118,43 @@ def parents_too_old(Individual, Family):
             for d in Individual:
                 if (c == d[0]):
                     child_birth = d[3]
+                    child_id = d[0]
                     child_birth_int = child_birth.year + child_birth.month+ child_birth.day
                     child_name = d[1].replace('/',"")
                     difference = child_birth_int - wife_birth_int
 
                     if (difference >= 60):
-                        anomaly = ("Anomaly US12: Mother of " + child_name + " is 60 years older than " + child_name)
+                        anomaly = ("Anomaly US12: Mother of " + child_name + " (" + child_id + ") is 60 years older than " + child_name)
                         print(anomaly)
                         eval = False
                         with open('gedcom_output.txt', 'a') as f:
                             f.write(anomaly)
                             f.write('\n')
-        
+
     return eval
+
+#####################################
+# Main
+#####################################
+if __name__ == "__main__":
+
+    # Get the ged file it needs to be in same folder
+    #file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
+
+    # input parameters
+    inputs = len(sys.argv)
+    print("Total inputs passed:", inputs)
+
+    file_path = sys.argv[1]
+
+    # Get all the individual's details
+    inds = gedcom_file_parser_ind(file_path)
+
+    # Get all the family details
+    fam = gedcom_file_parser_fam(file_path)
+
+    #dataframe = print_indi(file_path)
+    #dataframe_family = print_fam(file_path,dataframe)
+
+    birth_before_parents_death(inds, fam)
+    parents_too_old(inds,fam)
