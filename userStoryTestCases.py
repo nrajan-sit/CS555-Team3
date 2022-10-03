@@ -267,5 +267,7 @@ if __name__ == '__main__':
     #create output file
     with open('gedcom_output.txt', 'w') as f:
         f.write('')
-        
+
     unittest.main()
+        
+    
