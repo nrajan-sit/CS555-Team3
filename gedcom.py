@@ -309,10 +309,14 @@ if __name__ == "__main__":
     # Get all the family details
     fam = gedcom_file_parser_fam(file_path)
 
-    f = open('Sprint1_output.txt', 'w')
 
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)
+
+    with open('Sprint1_output.txt', 'w') as f:
+        f.write(str(dataframe))
+        f.write(str(dataframe_family))
+        f.close()
 
     #US01
     dates_before_current(dataframe,dataframe_family)
@@ -331,5 +335,3 @@ if __name__ == "__main__":
 
     #US12
     parents_too_old(inds,fam)
-
-    f.close()
