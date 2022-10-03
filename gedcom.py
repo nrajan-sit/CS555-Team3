@@ -188,16 +188,11 @@ def gedcom_file_parser_fam(file_name):
                         if previous_tag == 'DIV':
                             fam_div = datetime.strptime(line_details[4]+'/'+month+'/'+line_details[2], '%Y/%m/%d').date()
 
-
-
-
          # store the tag for date calculations
         previous_tag = line_details[1]
 
     Family_list.append([fam_id, fam_marr, fam_div, fam_husb, fam_wife, fam_chil])
     return Family_list
-
-
 
 def list_to_str(ls):
     ls = ls.split(' ')[:-1]
@@ -217,12 +212,6 @@ def list_to_str(ls):
         op = 'NA'
 
     return op
-
-
-
-
-
-
 
 
 def print_indi(file_path):
@@ -251,7 +240,9 @@ def print_indi(file_path):
         pt.add_column("Spouse",spouses)
         print('Individuals')
         print (pt)
-
+        with open('Sprint1_output.txt', 'a') as f:
+            f.write(str(pt))
+            f.write('\n')
     return(dataframe)
 
 def print_fam(file_path,dataframe):
@@ -290,6 +281,9 @@ def print_fam(file_path,dataframe):
         print('Families')
         ptf.sortby = "ID"
         print (ptf)
+        with open('Sprint1_output.txt', 'a') as f:
+            f.write(str(ptf))
+            f.write('\n')
     return (dataframe_family)
 
 
@@ -301,7 +295,7 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
+    #file_path = 'gedcom_sprint_1.ged'
 
     # input parameters
     inputs = len(sys.argv)
