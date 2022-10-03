@@ -301,13 +301,13 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
+    file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
 
     # input parameters
-    inputs = len(sys.argv)
-    print("Total inputs passed:", inputs)
+    #inputs = len(sys.argv)
+    #print("Total inputs passed:", inputs)
 
-    file_path = sys.argv[1]
+    #file_path = sys.argv[1]
 
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
@@ -315,10 +315,16 @@ if __name__ == "__main__":
     # Get all the family details
     fam = gedcom_file_parser_fam(file_path)
 
-    f = open('Sprint1_output.txt', 'w')
+
 
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)
+
+    with open('Sprint1_output.txt', 'w') as f:
+        f.write(str(dataframe))
+        f.write(str(dataframe_family))
+        f.close()
+
 
     #US01
     dates_before_current(dataframe,dataframe_family)
@@ -337,5 +343,3 @@ if __name__ == "__main__":
 
     #US12
     parents_too_old(inds,fam)
-
-    f.close()
