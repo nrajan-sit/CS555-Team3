@@ -307,13 +307,13 @@ def us04_marriage_before_divorce(Family):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
+    #file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
 
     #input parameters
-    #inputs = len(sys.argv)
-    #print("Total inputs passed:", inputs)
+    inputs = len(sys.argv)
+    print("Total inputs passed:", inputs)
 
-    #file_path = sys.argv[1]
+    file_path = sys.argv[1]
 
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
