@@ -33,11 +33,11 @@ def dates_before_current(individuals, families):
 
     df = individuals
     dead = df['Death'].replace('NA',pd.NA).dropna()
-    
+
     if any(dead > datetime.today().date()):
-    
+
         wrong_entries = df['Death'].replace('NA',pd.NA).dropna().index
-        
+
         for w in wrong_entries:
             wr_name = df.iloc[[w]]['Name'].values[0]
             wr_id = df.iloc[[w]]['ID'].values[0]
@@ -48,9 +48,9 @@ def dates_before_current(individuals, families):
                     f.write(er_message)
                     f.write('\n')
                     f.close()
-                    
+
         return_flag = False
-    
+
     if any(families['Married']> datetime.today().date()):
         wrong_entries = families[list((families['Married'] > datetime.today().date())==True)]
         wr = list(wrong_entries[['ID','Husband Name','Wife Name']].values)
@@ -61,16 +61,16 @@ def dates_before_current(individuals, families):
                     f.write(er_message)
                     f.write('\n')
                     f.close()
-                    
+
         return_flag = False
 
     df = families
     divor = df['Divorced'].replace('NA',pd.NA).dropna()
-    
+
     if any(divor > datetime.today().date()):
         wrong_entries = df['Divorced'].replace('NA',pd.NA).dropna().index
-        
-        
+
+
         for w in wrong_entries:
             #wr = list(wrong_entries[['ID','Husband Name','Wife Name']].values)
             wr_name_h = df.iloc[[w]]['Husband Name'].values[0]
@@ -85,7 +85,7 @@ def dates_before_current(individuals, families):
                     f.close()
 
         return_flag = False
-    
+
     return return_flag
 
 def birth_before_marriage(individuals, families):
@@ -97,7 +97,7 @@ def birth_before_marriage(individuals, families):
         h_id = families.iloc[[i]]['Husband ID'].values[0]
         w_id = families.iloc[[i]]['Wife ID'].values[0]
 
-        
+
         if (individuals.loc[individuals['ID'] == h_id]['Birthday'].values[0]) > married_date:
             name = individuals.loc[individuals['ID'] == h_id]['Name'].values[0].replace('/','')
             er_message = 'Error {}: Birth date of {} ({}) occurs after Marriage date'.format(error_type,name,h_id)
@@ -106,7 +106,7 @@ def birth_before_marriage(individuals, families):
                     f.write(er_message)
                     f.write('\n')
                     f.close()
-                    
+
             return_flag = False
 
         if (individuals.loc[individuals['ID'] == w_id]['Birthday'].values[0]) > married_date:
@@ -121,16 +121,16 @@ def birth_before_marriage(individuals, families):
 
     return return_flag
 
-if __name__ == "__main__":  
-    
+if __name__ == "__main__":
+
     # Get the ged file it needs to be in same folder
-    #file_path = 'ged_input_file_test.ged'
-    
+    file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
+
     #input parameters
-    inputs = len(sys.argv)
-    print("Total inputs passed:", inputs)
-    
-    file_path = sys.argv[1]
+    #inputs = len(sys.argv)
+    #print("Total inputs passed:", inputs)
+
+    #file_path = sys.argv[1]
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)
     dates_before_current(dataframe,dataframe_family)

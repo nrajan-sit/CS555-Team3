@@ -1,5 +1,5 @@
 from Vicky_Sprint1_user_stories import *
-from gedcom import *
+#from gedcom import *
 import unittest
 
 

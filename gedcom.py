@@ -21,7 +21,7 @@ import numpy as np
 from io import StringIO
 import prettytable
 
-from Vicky_Sprint1_user_stories import *
+from Team_Sprint1 import *
 
 
 
@@ -304,10 +304,10 @@ if __name__ == "__main__":
     #file_path = '/Users/Vicky/Desktop/gedcom_sprint_1.txt'
 
     # input parameters
-    #inputs = len(sys.argv)
-    #print("Total inputs passed:", inputs)
+    inputs = len(sys.argv)
+    print("Total inputs passed:", inputs)
 
-    #file_path = sys.argv[1]
+    file_path = sys.argv[1]
 
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
@@ -315,5 +315,27 @@ if __name__ == "__main__":
     # Get all the family details
     fam = gedcom_file_parser_fam(file_path)
 
+    f = open('Sprint1_output.txt', 'w')
+
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)
+
+    #US01
+    dates_before_current(dataframe,dataframe_family)
+
+    #US02
+    birth_before_marriage(dataframe, dataframe_family)
+
+    #US03
+    us03_birth_before_death(inds)
+
+    #US04
+    us04_marriage_before_divorce(fam)
+
+    #US09
+    birth_before_parents_death(inds, fam)
+
+    #US12
+    parents_too_old(inds,fam)
+
+    f.close()
