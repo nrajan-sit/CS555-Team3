@@ -292,8 +292,8 @@ def us04_marriage_before_divorce(Family):
         #print(i)
         if (i[2] != ''):
             if(i[1] > i[2]):
-                error_msg = 'Error US04: Marriage of Family ' + \
-                    i[0] + ' occurs after their divorce date'
+                error_msg = 'Error US04: Marriage of Family (' + \
+                    i[0] + ')' + ' occurs after their divorce date'
                 ret_val = False
                 print(error_msg)
                 with open('Sprint1_output.txt', 'a') as f:
