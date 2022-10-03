@@ -1,5 +1,9 @@
+Error US01: Birth date of Olivia William (I4) occurs after current date
+Error US03: Birth date of Lucas William (I3) occurs after his death date
+Error US04: Marriage of Family F3 occurs after their divorce date
 Error US09: Birthday of Liam William (I1) occurs after his father's death
 Error US09: Birthday of Olivia William (I4) occurs after her father's death
 Error US09: Birthday of Lucas William (I3) occurs after his mother's death
-Anomaly US12: Father of Michael William (I7 ) is 80 years older than Michael William
-Anomaly US12: Mother of Michael William (I7 ) is 60 years older than Michael William
+Anomaly US12: Father of Michael William (I7) is 80 years older than Michael William
+Anomaly US12: Mother of Michael William (I7) is 60 years older than Michael William
+Error US01: Birth date of Olivia William (I4) occurs after current date
