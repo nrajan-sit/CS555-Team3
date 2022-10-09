@@ -66,7 +66,7 @@ def us18_no_marriage_between_siblings(Individual, Family):
                         child_gender = 'her'
 
                     if (spouse == family):
-                        anomaly = 'Anomaly US18: '+ child_name + '('+child_id+ ') is married to '+ child_gender + ' sibling.'
+                        anomaly = 'Anomaly US18: '+ child_name + ' ('+child_id+ ') is married to '+ child_gender + ' sibling in family ('+ family +').'
                         eval = False
                         print(anomaly)
                         with open('gedcom_output.txt', 'a') as f:
