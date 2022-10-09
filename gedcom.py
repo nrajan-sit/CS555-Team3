@@ -240,7 +240,7 @@ def print_indi(file_path):
         pt.add_column("Spouse",spouses)
         print('Individuals')
         print (pt)
-        with open('Sprint1_output.txt', 'a') as f:
+        with open('gedcom_output.txt', 'a') as f:
             f.write(str(pt))
             f.write('\n')
     return(dataframe)
@@ -281,7 +281,7 @@ def print_fam(file_path,dataframe):
         print('Families')
         ptf.sortby = "ID"
         print (ptf)
-        with open('Sprint1_output.txt', 'a') as f:
+        with open('gedcom_output.txt', 'a') as f:
             f.write(str(ptf))
             f.write('\n')
     return (dataframe_family)
@@ -309,7 +309,7 @@ if __name__ == "__main__":
     # Get all the family details
     fam = gedcom_file_parser_fam(file_path)
 
-    f = open('Sprint1_output.txt', 'w')
+    f = open('gedcom_output.txt', 'w')
 
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)

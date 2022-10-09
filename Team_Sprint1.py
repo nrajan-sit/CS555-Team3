@@ -25,7 +25,7 @@ def dates_before_current(individuals, families):
         for w in wr:
             er_message = 'Error {}: Birth date of {} ({}) occurs after current date'.format(error_type,w[1].replace('/',''),w[0])
             print(er_message)
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -44,7 +44,7 @@ def dates_before_current(individuals, families):
 
             er_message = 'Error {}: Death date of {} ({}) occurs after current date'.format(error_type,wr_name.replace('/',''),wr_id)
             print(er_message)
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -57,7 +57,7 @@ def dates_before_current(individuals, families):
         for w in wr:
             er_message = 'Error {}: Marriage date of {} and {} ({}) occurs after current date'.format(error_type,w[1].replace('/',''),w[2].replace('/',''),w[0])
             print()
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -79,7 +79,7 @@ def dates_before_current(individuals, families):
 
             er_message = 'Error {}: Divorce date of {} and {} ({}) occurs after current date'.format(error_type,wr_name_h.replace('/',''),wr_name_w.replace('/',''),wr_id)
             print(er_message)
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -104,7 +104,7 @@ def birth_before_marriage(individuals, families):
             name = individuals.loc[individuals['ID'] == h_id]['Name'].values[0].replace('/','')
             er_message = 'Error {}: Birth date of {} ({}) occurs after Marriage date'.format(error_type,name,h_id)
             print(er_message)
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -115,7 +115,7 @@ def birth_before_marriage(individuals, families):
             name = individuals.loc[individuals['ID'] == w_id]['Name'].values[0].replace('/','')
             er_message = 'Error {}: Birth date of {} ({}) occurs after Marriage date'.format(error_type,name,w_id)
             print(er_message)
-            with open('Sprint1_output.txt', 'a') as f:
+            with open('gedcom_output.txt', 'a') as f:
                     f.write(er_message)
                     f.write('\n')
                     f.close()
@@ -163,7 +163,7 @@ def birth_before_parents_death(Individual, Family):
                             error=("Error US09: Birthday of " + child_name + " ("+ child_id + ") occurs after " + child_gender + " father's death")
                             print(error)
                             eval = False
-                            with open('Sprint1_output.txt', 'a') as f:
+                            with open('gedcom_output.txt', 'a') as f:
                                 f.write(error)
                                 f.write('\n')
                                 f.close()
@@ -186,7 +186,7 @@ def birth_before_parents_death(Individual, Family):
                             error = ("Error US09: Birthday of " + child_name + " ("+ child_id + ") occurs after " + child_gender + " mother's death")
                             print(error)
                             eval = False
-                            with open('Sprint1_output.txt', 'a') as f:
+                            with open('gedcom_output.txt', 'a') as f:
                                 f.write(error)
                                 f.write('\n')
                                 f.close()
@@ -233,7 +233,7 @@ def parents_too_old(Individual, Family):
                         anomaly = ("Anomaly US12: Father of " + child_name +" (" +child_id+ ") is 80 years older than " + child_name)
                         print(anomaly)
                         eval = False
-                        with open('Sprint1_output.txt', 'a') as f:
+                        with open('gedcom_output.txt', 'a') as f:
                             f.write(anomaly)
                             f.write('\n')
                             f.close()
@@ -252,7 +252,7 @@ def parents_too_old(Individual, Family):
                         anomaly = ("Anomaly US12: Mother of " + child_name + " (" + child_id + ") is 60 years older than " + child_name)
                         print(anomaly)
                         eval = False
-                        with open('Sprint1_output.txt', 'a') as f:
+                        with open('gedcom_output.txt', 'a') as f:
                             f.write(anomaly)
                             f.write('\n')
                             f.close()
@@ -278,7 +278,7 @@ def us03_birth_before_death(Individual):
                     'occurs after ' + _gender + ' death date'
                 ret_val = False
                 print(error_msg)
-                with open('Sprint1_output.txt', 'a') as f:
+                with open('gedcom_output.txt', 'a') as f:
                     f.write(error_msg)
                     f.write('\n')
                     f.close()
@@ -296,7 +296,7 @@ def us04_marriage_before_divorce(Family):
                     i[0] + ')' + ' occurs after their divorce date'
                 ret_val = False
                 print(error_msg)
-                with open('Sprint1_output.txt', 'a') as f:
+                with open('gedcom_output.txt', 'a') as f:
                     f.write(error_msg)
                     f.write('\n')
                     f.close()
