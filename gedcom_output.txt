@@ -1,0 +1,6 @@
+Anomaly US18: Siblings from family () are married to each other in family (F1).
+Anomaly US18: Siblings from family () are married to each other in family (F1).
+Anomaly US18: Siblings from family (F1) are married to each other in family (F2).
+Anomaly US18: Siblings from family (F2) are married to each other in family (F2).
+Error US17: Husband (I9) of family (F1) is married to his child (I10).
+Error US17: Wife (I19) of family (F2) is married to her child (I17).

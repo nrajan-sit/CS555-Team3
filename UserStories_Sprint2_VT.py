@@ -19,7 +19,7 @@ def us17_no_marriage_to_descendants(Family):
 
         for c in children_id:
             if (c == husband_id):
-                error = 'Error US17: Husband (' + husband_id + ') of family ('+family_id +') is married to his child ('+c+').'
+                error = 'Error US17: Wife (' + wife_id + ') of family ('+family_id +') is married to her child ('+c+').'
                 print(error)
                 eval = False
                 with open('gedcom_output.txt', 'a') as f:
@@ -28,7 +28,7 @@ def us17_no_marriage_to_descendants(Family):
                     f.close()
 
             if (c == wife_id):
-                error = 'Error US17: Wife (' + wife_id + ') of family ('+family_id +') is married to her child ('+c+').'
+                error = 'Error US17: Husband (' + husband_id + ') of family ('+family_id +') is married to his child ('+c+').'
                 print(error)
                 eval = False
                 with open('gedcom_output.txt', 'a') as f:
@@ -40,38 +40,38 @@ def us17_no_marriage_to_descendants(Family):
 
 
 #US18 siblings should not marry
-def us18_no_marriage_between_siblings(Individual, Family):
+def us18_no_marriage_between_siblings(Family):
 
     eval = True
-    child_id = ''
-    child_name = ''
-    spouse = ''
-    family = ''
-
+    husband_id = ''
+    wife_id = ''
+    husband_birth_family = ''
+    wife_birth_family = ''
+    marriage_family = ''
 
     for i in Family:
-        children_id = i[5].split()
-        family = i[0]
+        husband_id = i[3]
+        wife_id = i[4]
+        marriage_family = i[0]
 
-        for c in children_id:
-            for j in Individual:
-                if (c == j[0]):
-                    child_id = j[0];
-                    spouse = j[6];
-                    child_name = j[1].replace('/',"")
-                    child_gender = ''
-                    if (j[2] == 'M'):
-                        child_gender = 'his'
-                    if (j[2] == 'F'):
-                        child_gender = 'her'
+        for j in Family:
+            if (j[5] != ''):
+                children_id = j[5].split()
 
-                    if (spouse == family):
-                        anomaly = 'Anomaly US18: '+ child_name + ' ('+child_id+ ') is married to '+ child_gender + ' sibling in family ('+ family +').'
-                        eval = False
-                        print(anomaly)
-                        with open('gedcom_output.txt', 'a') as f:
-                            f.write(anomaly)
-                            f.write('\n')
-                            f.close()
+            for c in children_id:
+                if (husband_id == c):
+                    husband_birth_family = j[0]
+
+                if(wife_id == c):
+                    wife_birth_family = j[0]
+
+            if(husband_birth_family == wife_birth_family):
+                anomaly = 'Anomaly US18: Siblings from family (' + husband_birth_family +') are married to each other in family ('+ marriage_family+').'
+                eval = False
+                print(anomaly)
+                with open('gedcom_output.txt', 'a') as f:
+                    f.write(anomaly)
+                    f.write('\n')
+                    f.close()
 
     return eval

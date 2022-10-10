@@ -21,7 +21,7 @@ import numpy as np
 from io import StringIO
 import prettytable
 
-from Team_Sprint1 import *
+from UserStories_Sprint1_Team3 import *
 
 
 
