@@ -61,6 +61,9 @@ def us08_birth_before_marriage_of_parents(Individual, Family):
                                         '/', '') + ' is born before the marriage of their parents'
                                 ret_val = True
                                 print(error_msg)
+                                with open('gedcom_output.txt', 'a') as f:
+                                    f.write(error_msg)
+                                    f.write('\n')
                                 
         elif (i[1] != '' and i[2] !=''): # and i[2] > i[1]):
             #print(i)
@@ -79,6 +82,9 @@ def us08_birth_before_marriage_of_parents(Individual, Family):
                                         '/', '') + ' is born after the divorce of their parents'
                                 ret_val = True
                                 print(error_msg)
+                                with open('gedcom_output.txt', 'a') as f:
+                                    f.write(error_msg)
+                                    f.write('\n')
                                 
         else:
             ret_val = False
