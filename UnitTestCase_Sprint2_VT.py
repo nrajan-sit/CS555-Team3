@@ -43,12 +43,13 @@ class TestNoMarriageBetweenSiblings(unittest.TestCase):
 
 
         test_fam = []
+
         fam_id = 'F1'
         marr_date = ''
         div_date = ''
         hus_id = 'I3'
         wife_id = 'I4'
-        child_id = 'I9 I8'
+        child_id = 'I9 I8 I12'
 
         test_fam.append([fam_id, marr_date, div_date, hus_id, wife_id,
                         child_id])
@@ -59,7 +60,7 @@ class TestNoMarriageBetweenSiblings(unittest.TestCase):
         div_date_02 = ''
         hus_id_02 = 'I9'
         wife_id_02 = 'I8'
-        child_id_02 = ''
+        child_id_02 = 'I11 I10'
 
         test_fam.append([fam_id_02, marr_date_02, div_date_02, hus_id_02, wife_id_02,
                         child_id_02])

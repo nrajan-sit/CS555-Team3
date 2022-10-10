@@ -45,7 +45,7 @@ def us18_no_marriage_between_siblings(Family):
     eval = True
     husband_id = ''
     wife_id = ''
-    husband_birth_family = ''
+    husband_birth_family = '#'
     wife_birth_family = ''
     marriage_family = ''
 
@@ -55,8 +55,8 @@ def us18_no_marriage_between_siblings(Family):
         marriage_family = i[0]
 
         for j in Family:
-            if (j[5] != ''):
-                children_id = j[5].split()
+
+            children_id = j[5].split()
 
             for c in children_id:
                 if (husband_id == c):
@@ -65,13 +65,14 @@ def us18_no_marriage_between_siblings(Family):
                 if(wife_id == c):
                     wife_birth_family = j[0]
 
-            if(husband_birth_family == wife_birth_family):
-                anomaly = 'Anomaly US18: Siblings from family (' + husband_birth_family +') are married to each other in family ('+ marriage_family+').'
-                eval = False
-                print(anomaly)
-                with open('gedcom_output.txt', 'a') as f:
-                    f.write(anomaly)
-                    f.write('\n')
-                    f.close()
+
+        if (husband_birth_family == wife_birth_family):
+           anomaly = 'Anomaly US18: Siblings from family (' + wife_birth_family +') are married to each other in family ('+ marriage_family+').'
+           eval = False
+           print(anomaly)
+           with open('gedcom_output.txt', 'a') as f:
+               f.write(anomaly)
+               f.write('\n')
+               f.close()
 
     return eval
