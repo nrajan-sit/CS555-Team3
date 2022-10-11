@@ -7,6 +7,7 @@ import sys
 # Import datetime package
 from datetime import datetime
 import datetime as dt
+from datetime import date
 
 import pandas as pd
 import numpy as np

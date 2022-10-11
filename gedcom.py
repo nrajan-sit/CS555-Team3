@@ -296,7 +296,7 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = 'gedcom_sprint_1.ged'
+    #file_path = 'gedcom_sprint_2.ged'
 
     # input parameters
     inputs = len(sys.argv)
@@ -315,6 +315,7 @@ if __name__ == "__main__":
     dataframe = print_indi(file_path)
     dataframe_family = print_fam(file_path,dataframe)
 
+    #########Sprint1########
     #US01
     dates_before_current(dataframe,dataframe_family)
 
@@ -332,5 +333,24 @@ if __name__ == "__main__":
 
     #US12
     parents_too_old(inds,fam)
+
+    ########Sprint2########
+    #US05
+    us05_Marriage_before_Death(dataframe, dataframe_family)
+
+    #US06
+    us06_Divorce_before_Death(dataframe, dataframe_family)
+
+    #US07
+    us07_less_than_150yrs(inds)
+
+    #US08
+    us08_birth_before_marriage_of_parents(inds,fam)
+
+    #US17
+    us17_no_marriage_to_descendants(fam)
+
+    #US18
+    us18_no_marriage_between_siblings(fam)
 
     f.close()
