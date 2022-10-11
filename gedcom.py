@@ -22,6 +22,7 @@ from io import StringIO
 import prettytable
 
 from UserStories_Sprint1_Team3 import *
+from UserStories_Sprint2_Team3 import *
 
 
 
