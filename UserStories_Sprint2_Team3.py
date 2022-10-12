@@ -25,7 +25,8 @@ def us07_less_than_150yrs(Individual):
         #print(i[3])
         if (i[3] != '' and i[4] == ''):
             today = date.today()
-            current_age = today.year - i[3].year - ((today.month, today.day) < (i[3].month, i[3].day))
+            current_age = today.year - \
+                i[3].year - ((today.month, today.day) < (i[3].month, i[3].day))
             #print('Person still alive')
             #print('current age is ' , current_age)
             if (current_age >= 150):
@@ -37,7 +38,8 @@ def us07_less_than_150yrs(Individual):
                     f.write('\n')
 
         elif (i[3] != '' and i[4] != ''):
-            current_age = i[4].year - i[3].year - ((i[4].month, i[4].day) < (i[3].month, i[3].day))
+            current_age = i[4].year - i[3].year - \
+                ((i[4].month, i[4].day) < (i[3].month, i[3].day))
             #print('Person is dead')
             #print('current age is ' , current_age)
             if (current_age >= 150):
@@ -55,31 +57,40 @@ def us07_less_than_150yrs(Individual):
     return ret_val
 
 # US08	Birth before marriage of parents
+
+
 def us08_birth_before_marriage_of_parents(Individual, Family):
     error_msg = ''
     ret_val = False
     for i in Family:
         #print(i)
-        if (i[1] != '' and i[2] ==''):
+        if (i[1] != '' and i[2] == ''):
             #print(i[5])
             arr_of_children = i[5].split(' ')
             #print(arr_of_children)
             if(len(arr_of_children) > 0):
+                #print(arr_of_children)
                 for child in arr_of_children:
                     for inds in Individual:
                         if(inds[0] == child):
+                            _gender = ''
                             #print('same person', inds[0], child, inds)
                             if(i[1] > inds[3]):
-                                error_msg = 'Anomaly US08: ' + \
+                                if(inds[2] == 'M'):
+                                    _gender = 'his'
+                                if(inds[2] == 'F'):
+                                    _gender = 'her'
+
+                                error_msg = 'Anomaly US08: Birth date of ' + \
                                     inds[1].replace(
-                                        '/', '') + ' is born before the marriage of their parents'
+                                        '/', '') + ' (' + inds[0] + ') occurs after the marriage date of ' + _gender + ' parents in Family (' + i[0] + ')'
                                 ret_val = True
                                 print(error_msg)
                                 with open('gedcom_output.txt', 'a') as f:
                                     f.write(error_msg)
                                     f.write('\n')
 
-        elif (i[1] != '' and i[2] !=''): # and i[2] > i[1]):
+        elif (i[1] != '' and i[2] != ''):  # and i[2] > i[1]):
             #print(i)
             arr_of_children = i[5].split(' ')
             #print(arr_of_children)
@@ -87,13 +98,20 @@ def us08_birth_before_marriage_of_parents(Individual, Family):
                 for child in arr_of_children:
                     for inds in Individual:
                         if(inds[0] == child):
-                            print('same person', inds[0], child, inds)
-                            num_months = (inds[3].year - i[2].year) * 12 + (inds[3].month - i[2].month)
-                            print(i[2], inds[3], num_months)
+                            _gender = ''
+                            #print('same person', inds[0], child, inds)
+                            num_months = (inds[3].year - i[2].year) * \
+                                12 + (inds[3].month - i[2].month)
+                            #print(i[2], inds[3], num_months)
                             if(i[2] < inds[3] and num_months < 9):
-                                error_msg = 'Anomaly US08: ' + \
+                                if(inds[2] == 'M'):
+                                    _gender = 'his'
+                                if(inds[2] == 'F'):
+                                    _gender = 'her'
+
+                                error_msg = 'Anomaly US08: Birth date of ' + \
                                     inds[1].replace(
-                                        '/', '') + ' is born after the divorce of their parents'
+                                        '/', '') + ' (' + inds[0] + ') occurs after the divorce date of ' + _gender + ' parents in Family (' + i[0] + ')'
                                 ret_val = True
                                 print(error_msg)
                                 with open('gedcom_output.txt', 'a') as f:
@@ -104,7 +122,6 @@ def us08_birth_before_marriage_of_parents(Individual, Family):
             ret_val = False
 
     return ret_val
-
 
 def us05_Marriage_before_Death(individuals, families):
 
