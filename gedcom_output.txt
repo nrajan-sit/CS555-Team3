@@ -9,7 +9,7 @@
 |  I6 | Alexander /James/ |   M    | 1970-02-17 |  52 |  True |     NA     |   NA   | {'F2'} |
 |  I7 | Michael /William/ |   M    | 1969-10-14 |  53 |  True |     NA     | {'F4'} | {'F3'} |
 |  I8 |  Eleanor /James/  |   F    | 1975-12-10 |  46 | False | 1800-11-14 |   NA   | {'F3'} |
-|  I9 | Jackson /William/ |   M    | 1870-01-04 | 152 | False | 1800-06-07 |   NA   | {'F4'} |
+|  I9 | Jackson /William/ |   M    | 1870-01-04 | 152 | False | 2020-06-07 |   NA   | {'F4'} |
 | I10 |   Emma /William/  |   F    | 1900-09-20 | 122 |  True |     NA     |   NA   | {'F4'} |
 +-----+-------------------+--------+------------+-----+-------+------------+--------+--------+
 +----+------------+------------+------------+-------------------+---------+------------------+-------------+
@@ -26,20 +26,18 @@ Error US01: Marriage date of Lucas William and Evelyn William (F1) occurs after 
 Error US02: Birth date of Lucas William (I3) occurs after Marriage date
 Error US03: Birth date of Lucas William (I3) occurs after his death date
 Error US03: Birth date of Eleanor James (I8) occurs after her death date
-Error US03: Birth date of Jackson William (I9) occurs after his death date
 Error US04: Marriage of Family (F3) occurs after their divorce date
 Error US09: Birthday of Liam William (I1) occurs after his father's death
 Error US09: Birthday of Olivia William (I4) occurs after her father's death
 Error US09: Birthday of Lucas William (I3) occurs after his mother's death
-Error US09: Birthday of Michael William (I7) occurs after his father's death
 Anomaly US12: Mother of Lucas William (I3) is 60 years older than Lucas William
 Anomaly US12: Father of Michael William (I7) is 80 years older than Michael William
 Anomaly US12: Mother of Michael William (I7) is 60 years older than Michael William
 Error US05: Death date of Lucas William (I3) occurs before Marriage date
 Error US05: Death date of Eleanor James (I8) occurs before Marriage date
-Error US05: Death date of Jackson William (I9) occurs before Marriage date
 Error US06: Death date of Eleanor James (I8) occurs after Divorce date
-Anomaly US08: Liam William is born before the marriage of their parents
-Anomaly US08: Olivia William is born before the marriage of their parents
-Anomaly US08: Evelyn William is born before the marriage of their parents
-Anomaly US08: Michael William is born before the marriage of their parents
+Anomaly US07: Jackson William is over 150 yrs old
+Anomaly US08: Birth date of Liam William (I1) occurs after the marriage date of his parents in Family (F1)
+Anomaly US08: Birth date of Olivia William (I4) occurs after the marriage date of her parents in Family (F1)
+Anomaly US08: Birth date of Evelyn William (I2) occurs after the marriage date of her parents in Family (F2)
+Anomaly US08: Birth date of Michael William (I7) occurs after the marriage date of his parents in Family (F4)

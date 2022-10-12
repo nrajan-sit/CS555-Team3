@@ -57,8 +57,6 @@ def us07_less_than_150yrs(Individual):
     return ret_val
 
 # US08	Birth before marriage of parents
-
-
 def us08_birth_before_marriage_of_parents(Individual, Family):
     error_msg = ''
     ret_val = False
