@@ -211,28 +211,33 @@ def us17_no_marriage_to_descendants(Family):
 
     for i in Family:
         children_id = i[5].split()
-        family_id = i[0]
-        husband_id = i[3]
-        wife_id = i[4]
 
-        for c in children_id:
-            if (c == husband_id):
-                error = 'Error US17: Wife (' + wife_id + ') of family ('+family_id +') is married to her child ('+c+').'
-                print(error)
-                eval = False
-                with open('gedcom_output.txt', 'a') as f:
-                    f.write(error)
-                    f.write('\n')
-                    f.close()
+        for j in Family:
+            family_id = j[0]
+            husband_id = j[3]
+            wife_id = j[4]
 
-            if (c == wife_id):
-                error = 'Error US17: Husband (' + husband_id + ') of family ('+family_id +') is married to his child ('+c+').'
-                print(error)
-                eval = False
-                with open('gedcom_output.txt', 'a') as f:
-                    f.write(error)
-                    f.write('\n')
-                    f.close()
+            for c in children_id:
+                if (c == husband_id):
+                    if(wife_id == i[4]):
+                        error = 'Error US17: Wife (' + wife_id + ') of family ('+family_id +') is married to her child ('+c+').'
+                        print(error)
+                        eval = False
+                        with open('gedcom_output.txt', 'a') as f:
+                            f.write(error)
+                            f.write('\n')
+                            f.close()
+
+
+                if (c == wife_id):
+                    if(husband_id == i[3]):
+                        error = 'Error US17: Husband (' + husband_id + ') of family ('+family_id +') is married to his child ('+c+').'
+                        print(error)
+                        eval = False
+                        with open('gedcom_output.txt', 'a') as f:
+                            f.write(error)
+                            f.write('\n')
+                            f.close()
 
     return eval
 

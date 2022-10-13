@@ -1,43 +1,39 @@
-+-----+-------------------+--------+------------+-----+-------+------------+--------+--------+
-|  ID |        Name       | Gender |  Birthday  | Age | Alive |   Death    | Child  | Spouse |
-+-----+-------------------+--------+------------+-----+-------+------------+--------+--------+
-|  I1 |   Liam /William/  |   M    | 2021-07-14 |  1  |  True |     NA     | {'F1'} |   NA   |
-|  I2 |  Evelyn /William/ |   F    | 1991-04-10 |  31 |  True |     NA     | {'F2'} | {'F1'} |
-|  I3 |  Lucas /William/  |   M    | 2024-12-29 |  -2 | False | 1800-04-11 | {'F3'} | {'F1'} |
-|  I4 |  Olivia /William/ |   F    | 2022-12-08 |  0  |  True |     NA     | {'F1'} |   NA   |
-|  I5 |  Harper /Thomas/  |   F    | 1970-03-10 |  52 |  True |     NA     |   NA   | {'F2'} |
-|  I6 | Alexander /James/ |   M    | 1970-02-17 |  52 |  True |     NA     |   NA   | {'F2'} |
-|  I7 | Michael /William/ |   M    | 1969-10-14 |  53 |  True |     NA     | {'F4'} | {'F3'} |
-|  I8 |  Eleanor /James/  |   F    | 1975-12-10 |  46 | False | 1800-11-14 |   NA   | {'F3'} |
-|  I9 | Jackson /William/ |   M    | 1870-01-04 | 152 | False | 2020-06-07 |   NA   | {'F4'} |
-| I10 |   Emma /William/  |   F    | 1900-09-20 | 122 |  True |     NA     |   NA   | {'F4'} |
-+-----+-------------------+--------+------------+-----+-------+------------+--------+--------+
-+----+------------+------------+------------+-------------------+---------+------------------+-------------+
-| ID |  Married   |  Divorced  | Husband ID |    Husband Name   | Wife ID |    Wife Name     |   Children  |
-+----+------------+------------+------------+-------------------+---------+------------------+-------------+
-| F1 | 2023-04-12 |     NA     |     I3     |  Lucas /William/  |    I2   | Evelyn /William/ | {'I1','I4'} |
-| F2 | 2001-07-12 |     NA     |     I6     | Alexander /James/ |    I5   | Harper /Thomas/  |    {'I2'}   |
-| F3 | 1985-06-08 | 1980-05-06 |     I7     | Michael /William/ |    I8   | Eleanor /James/  |    {'I3'}   |
-| F4 | 1970-06-05 |     NA     |     I9     | Jackson /William/ |   I10   |  Emma /William/  |    {'I7'}   |
-+----+------------+------------+------------+-------------------+---------+------------------+-------------+
-Error US01: Birth date of Lucas William (I3) occurs after current date
-Error US01: Birth date of Olivia William (I4) occurs after current date
-Error US01: Marriage date of Lucas William and Evelyn William (F1) occurs after current date
-Error US02: Birth date of Lucas William (I3) occurs after Marriage date
-Error US03: Birth date of Lucas William (I3) occurs after his death date
-Error US03: Birth date of Eleanor James (I8) occurs after her death date
++----+---------------------+--------+------------+-----+-------+------------+--------+-------------+
+| ID |         Name        | Gender |  Birthday  | Age | Alive |   Death    | Child  |    Spouse   |
++----+---------------------+--------+------------+-----+-------+------------+--------+-------------+
+| I1 |   Shawn /Spencer/   |   M    | 1980-06-11 |  42 |  True |     NA     | {'F2'} |    {'F1'}   |
+| I2 | Johnathan /Spencer/ |   M    | 1930-12-05 |  91 | False | 1928-04-04 | {'F3'} |    {'F2'}   |
+| I3 |  Samantha /Spencer/ |   F    | 1940-05-07 |  82 |  True |     NA     | {'F5'} | {'F2','F4'} |
+| I4 |   Stacy /Spencer/   |   F    | 1982-07-09 |  40 |  True |     NA     | {'F2'} |    {'F1'}   |
+| I5 |    Mary /Spencer/   |   F    | 1802-06-04 | 220 |  True |     NA     |   NA   | {'F3','F6'} |
+| I6 |   Samuel /Spencer/  |   M    | 1800-09-05 | 222 | False | 1880-04-04 |   NA   |    {'F3'}   |
+| I7 |  Joseph /Rodriguez/ |   M    | 1900-05-04 | 122 |  True |     NA     |   NA   | {'F4','F5'} |
+| I8 |  Jenny /Rodriguez/  |   F    | 1900-06-05 | 122 |  True |     NA     |   NA   |    {'F5'}   |
+| I9 |  Solomon /Spencer/  |   M    | 1950-07-06 |  72 |  True |     NA     | {'F1'} |      NA     |
++----+---------------------+--------+------------+-----+-------+------------+--------+-------------+
++----+------------+------------+------------+---------------------+---------+--------------------+-------------+
+| ID |  Married   |  Divorced  | Husband ID |     Husband Name    | Wife ID |     Wife Name      |   Children  |
++----+------------+------------+------------+---------------------+---------+--------------------+-------------+
+| F1 | 1955-04-05 |     NA     |     I1     |   Shawn /Spencer/   |    I4   |  Stacy /Spencer/   |    {'I9'}   |
+| F2 | 1950-04-05 |     NA     |     I2     | Johnathan /Spencer/ |    I3   | Samantha /Spencer/ | {'I1','I4'} |
+| F3 | 1950-05-04 | 1899-04-07 |     I6     |   Samuel /Spencer/  |    I5   |   Mary /Spencer/   |    {'I2'}   |
+| F4 | 1955-05-03 |     NA     |     I7     |  Joseph /Rodriguez/ |    I3   | Samantha /Spencer/ |      NA     |
+| F5 | 1950-08-08 | 1949-01-04 |     I7     |  Joseph /Rodriguez/ |    I8   | Jenny /Rodriguez/  |    {'I3'}   |
++----+------------+------------+------------+---------------------+---------+--------------------+-------------+
+Error US02: Birth date of Shawn Spencer (I1) occurs after Marriage date
+Error US02: Birth date of Stacy Spencer (I4) occurs after Marriage date
+Error US03: Birth date of Johnathan Spencer (I2) occurs after his death date
 Error US04: Marriage of Family (F3) occurs after their divorce date
-Error US09: Birthday of Liam William (I1) occurs after his father's death
-Error US09: Birthday of Olivia William (I4) occurs after her father's death
-Error US09: Birthday of Lucas William (I3) occurs after his mother's death
-Anomaly US12: Mother of Lucas William (I3) is 60 years older than Lucas William
-Anomaly US12: Father of Michael William (I7) is 80 years older than Michael William
-Anomaly US12: Mother of Michael William (I7) is 60 years older than Michael William
-Error US05: Death date of Lucas William (I3) occurs before Marriage date
-Error US05: Death date of Eleanor James (I8) occurs before Marriage date
-Error US06: Death date of Eleanor James (I8) occurs after Divorce date
-Anomaly US07: Jackson William is over 150 yrs old
-Anomaly US08: Birth date of Liam William (I1) occurs after the marriage date of his parents in Family (F1)
-Anomaly US08: Birth date of Olivia William (I4) occurs after the marriage date of her parents in Family (F1)
-Anomaly US08: Birth date of Evelyn William (I2) occurs after the marriage date of her parents in Family (F2)
-Anomaly US08: Birth date of Michael William (I7) occurs after the marriage date of his parents in Family (F4)
+Error US04: Marriage of Family (F5) occurs after their divorce date
+Error US09: Birthday of Shawn Spencer (I1) occurs after his father's death
+Error US09: Birthday of Stacy Spencer (I4) occurs after her father's death
+Error US09: Birthday of Johnathan Spencer (I2) occurs after his father's death
+Anomaly US12: Father of Johnathan Spencer (I2) is 80 years older than Johnathan Spencer
+Anomaly US12: Mother of Johnathan Spencer (I2) is 60 years older than Johnathan Spencer
+Error US05: Death date of Johnathan Spencer (I2) occurs before Marriage date
+Error US05: Death date of Samuel Spencer (I6) occurs before Marriage date
+Error US06: Death date of Samuel Spencer (I6) occurs after Divorce date
+Anomaly US07: Mary Spencer is over 150 yrs old
+Anomaly US08: Birth date of Solomon Spencer (I9) occurs after the marriage date of his parents in Family (F1)
+Error US17: Husband (I7) of family (F4) is married to his child (I3).
+Anomaly US18: Siblings from family (F2) are married to each other in family (F1).

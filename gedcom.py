@@ -296,13 +296,13 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = 'gedcom_sprint_2.ged'
+    file_path = 'gedcom_sprint_2.ged'
 
     # input parameters
-    inputs = len(sys.argv)
-    print("Total inputs passed:", inputs)
+    #inputs = len(sys.argv)
+    #print("Total inputs passed:", inputs)
 
-    file_path = sys.argv[1]
+    #file_path = sys.argv[1]
 
     # Get all the individual's details
     inds = gedcom_file_parser_ind(file_path)
