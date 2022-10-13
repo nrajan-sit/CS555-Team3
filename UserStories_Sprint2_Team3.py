@@ -31,7 +31,8 @@ def us07_less_than_150yrs(Individual):
             #print('current age is ' , current_age)
             if (current_age >= 150):
                 ret_val = True
-                error_msg = 'Anomaly US07: ' + i[1] + ' is over 150 yrs old'
+                error_msg = 'Anomaly US07: ' + \
+                    i[1].replace('/', '') + ' is over 150 yrs old'
                 print(error_msg)
                 with open('gedcom_output.txt', 'a') as f:
                     f.write(error_msg)
