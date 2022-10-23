@@ -8,7 +8,7 @@ def us15_fewer_than_15_siblings(Family):
         children_id = i[5].split()
         family_id = i[0]
 
-        count = 1
+        count = 0
 
         for c in children_id:
             count+=1
