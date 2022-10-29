@@ -58,7 +58,7 @@ def us13_sibling_spacing(Individual, Family):
 
                         if((dif < 8) and (dif2 > 2)):
 
-                            error = ('Error US13: Birthdays of siblings '+sibling_1_name+' ('+sibling_1_id+') and '+sibling_2_name+' ('+sibling_2_id+') are between 2 days and 8 months apart')
+                            error = ('Error US13: Birthdays of siblings '+sibling_1_name+' ('+sibling_1_id+') and '+sibling_2_name+' ('+sibling_2_id+') should be between 2 days and 8 months apart')
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
