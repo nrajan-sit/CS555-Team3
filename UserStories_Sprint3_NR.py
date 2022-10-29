@@ -6,17 +6,17 @@ def us16_male_last_names(Individual, Family):
     error_msg = ''
     ret_val = True
     for fam_detail in Family:
-        print(fam_detail)
-        print('Husband is ',fam_detail[3])
+        #print(fam_detail)
+        #print('Husband is ',fam_detail[3])
         
         # get Father's last name to set the base
         for ind_detail in Individual:
             if(fam_detail[3] == ind_detail[0]):
-                print(ind_detail[1].replace('/',''))
+                #print(ind_detail[1].replace('/',''))
                 full_name = ind_detail[1].replace('/', '').split(' ')
                 #print('full name ', full_name)
                 family_last_name = full_name[1]
-                print('family last name ', family_last_name)
+                #print('family last name ', family_last_name)
         
         arr_of_children = fam_detail[5].split(' ')
         if(len(arr_of_children) > 0):
@@ -25,9 +25,9 @@ def us16_male_last_names(Individual, Family):
                 for child_detail in Individual:
                     #print(child_detail)
                     if(child == child_detail[0] and child_detail[2] == 'M' and ret_val == True):
-                        print(child_detail[1].replace('/', ''))
+                        #print(child_detail[1].replace('/', ''))
                         child_full_name = child_detail[1].replace('/', '').split(' ')
-                        print('child full name ', child_full_name)
+                        #print('child full name ', child_full_name)
                         child_last_name = child_full_name[1]
                         #print('child last name ', child_last_name)
                         if(child_last_name != family_last_name):
