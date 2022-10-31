@@ -23,7 +23,7 @@ import prettytable
 
 from UserStories_Sprint1_Team3 import *
 from UserStories_Sprint2_Team3 import *
-
+from UserStories_Sprint3_Team3 import *
 
 
 Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')
@@ -296,7 +296,7 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = 'gedcom_sprint_2.ged'
+    #file_path = 'gedcom_sprint_3.ged'
 
     # input parameters
     inputs = len(sys.argv)
@@ -352,5 +352,24 @@ if __name__ == "__main__":
 
     #US18
     us18_no_marriage_between_siblings(fam)
+
+    #########Sprint3########
+    #US10
+    us10_Marriage_before_14(dataframe, dataframe_family)
+    
+    #US14
+    us14_Multiple_Births(dataframe, dataframe_family)
+    
+    #US16
+    us16_male_last_names(inds, fam)
+    
+    #US21
+    us21_correct_gender_for_role(inds, fam)
+    
+    #US15
+    us15_fewer_than_15_siblings(fam)
+    
+    #US13
+    us13_sibling_spacing(inds, fam)
 
     f.close()

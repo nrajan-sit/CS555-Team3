@@ -77,15 +77,13 @@ def us14_Multiple_Births(individuals, families):
     return return_flag
 
 #US15 Fewer than 15 siblings: There should be fewer than 15 siblings in a family
-
-
 def us15_fewer_than_15_siblings(Family):
     eval = True
 
     for i in Family:
         children_id = i[5].split()
         family_id = i[0]
-        #print(children_id)
+
         count = 0
 
         for c in children_id:
@@ -106,8 +104,6 @@ def us15_fewer_than_15_siblings(Family):
 #US13 Sibling spacing: Birth dates of siblings should be more than 8 months
 #apart or less than 2 days apart (twins may be born one day apart,
 #e.g. 11:59 PM and 12:02 AM the following calendar day)
-
-
 def us13_sibling_spacing(Individual, Family):
     eval = True
     #sibling_1_birthday ='#'
@@ -142,7 +138,7 @@ def us13_sibling_spacing(Individual, Family):
                         if((dif < 8) and (dif2 > 2)):
 
                             error = ('Error US13: Birthdays of siblings '+sibling_1_name+' ('+sibling_1_id+') and ' +
-                                     sibling_2_name+' ('+sibling_2_id+') are between 2 days and 8 months apart')
+                                     sibling_2_name+' ('+sibling_2_id+') should be between 2 days or 8 months apart')
                             print(error)
                             eval = False
                             with open('gedcom_output.txt', 'a') as f:
@@ -153,8 +149,6 @@ def us13_sibling_spacing(Individual, Family):
     return eval
 
 #US16 : Male last names
-
-
 def us16_male_last_names(Individual, Family):
     error_msg = ''
     ret_val = True
@@ -197,8 +191,6 @@ def us16_male_last_names(Individual, Family):
     return ret_val
 
 # US21: Correct gender for role
-
-
 def us21_correct_gender_for_role(Individual, Family):
     error_msg = ''
     ret_val = True
