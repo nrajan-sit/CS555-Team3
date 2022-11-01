@@ -31,7 +31,7 @@ def us10_Marriage_before_14(individuals, families):
         h_id = families.iloc[[i]]['Husband ID'].values[0]
         w_id = families.iloc[[i]]['Wife ID'].values[0]
 
-        if (individuals.loc[individuals['ID'] == h_id]['Birthday'].values[0]) - married_date <= dt.timedelta(14*365):
+        if (married_date - individuals.loc[individuals['ID'] == h_id]['Birthday'].values[0]) <= dt.timedelta(14*365):
             name = individuals.loc[individuals['ID'] ==
                                    h_id]['Name'].values[0].replace('/', '')
             er_message = 'Error {}: Marriage date of {} ({}) occurs before 14 years of Birth'.format(
@@ -44,7 +44,7 @@ def us10_Marriage_before_14(individuals, families):
 
             return_flag = False
 
-        if (individuals.loc[individuals['ID'] == w_id]['Birthday'].values[0]) - married_date <= dt.timedelta(14*365.25):
+        if (married_date - individuals.loc[individuals['ID'] == h_id]['Birthday'].values[0]) <= dt.timedelta(14*365):
             name = individuals.loc[individuals['ID'] ==
                                    w_id]['Name'].values[0].replace('/', '')
             er_message = 'Error {}: Marriage date of {} ({}) occurs before 14 years of Birth'.format(
