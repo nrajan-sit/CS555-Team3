@@ -1,6 +1,5 @@
 import unittest
 from gedcom import *
-from Team_Sprint1 import *
 from UserStories_Sprint4_NR import *
 from datetime import date
 
