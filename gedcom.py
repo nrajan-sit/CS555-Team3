@@ -24,6 +24,7 @@ import prettytable
 from UserStories_Sprint1_Team3 import *
 from UserStories_Sprint2_Team3 import *
 from UserStories_Sprint3_Team3 import *
+from UserStories_Sprint4_Team3 import *
 
 
 Individual = namedtuple('Individual', 'Individual_ID, Name, Sex, DOB, DOD, FAMC, FAMS')
@@ -296,7 +297,7 @@ def print_fam(file_path,dataframe):
 if __name__ == "__main__":
 
     # Get the ged file it needs to be in same folder
-    #file_path = 'gedcom_sprint_3.ged'
+    #file_path = 'gedcom_sprint_4.ged'
 
     # input parameters
     inputs = len(sys.argv)
@@ -371,5 +372,24 @@ if __name__ == "__main__":
     
     #US13
     us13_sibling_spacing(inds, fam)
+    
+    #########Sprint4########
+    #US29
+    us29_List_Deceased(dataframe, dataframe_family)
+    
+    #US35
+    us35_List_Recent_Births(dataframe, dataframe_family)
+    
+    #US36
+    us36_list_recent_deaths(inds)
+    
+    #US38
+    us38_list_upcoming_birthdays(inds)
+    
+    #US31
+    us31_list_living_single(inds)
+    
+    #US30
+    us30_list_living_married(inds,fam)
 
     f.close()
