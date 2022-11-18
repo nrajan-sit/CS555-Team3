@@ -62,7 +62,7 @@ def us35_List_Recent_Births(individuals, families):
 
 #US36 : List recent deaths
 def us36_list_recent_deaths(Individual):
-    listToStr = ''
+    output = ''
     ret_ind = []
     ret_val = False
     for ind_detail in Individual:
@@ -77,12 +77,14 @@ def us36_list_recent_deaths(Individual):
                 ret_ind.append(ind_detail[1].replace(
                     '/', '') + ' (' + ind_detail[0] + ') has passed away recently')
                 #print("in between")
-                listToStr = '\n'.join([str(elem) for elem in ret_ind])
+                #listToStr = '\n'.join([str(elem) for elem in ret_ind])
+                output = 'US36: ' + ind_detail[1].replace('/', '') + ' (' + ind_detail[0] + ') has passed away recently'
+                print(output)
                 ret_val = True
 
     #print(listToStr)
     with open('gedcom_output.txt', 'a') as f:
-        f.write(listToStr)
+        f.write(output)
         f.write('\n')
 
     return ret_ind
@@ -90,7 +92,7 @@ def us36_list_recent_deaths(Individual):
 
 # US38 : List upcoming birthdays
 def us38_list_upcoming_birthdays(Individual):
-    listToStr = ''
+    output = ''
     ret_ind = []
     ret_val = False
     for ind_detail in Individual:
@@ -106,15 +108,18 @@ def us38_list_upcoming_birthdays(Individual):
             ret_ind.append(ind_detail[1].replace(
                 '/', '') + ' (' + ind_detail[0] + ') has an upcoming birthday')
             #print("in between")
-            listToStr = '\n'.join([str(elem) for elem in ret_ind])
+            output = 'US38: ' + ind_detail[1].replace('/', '') + ' (' + ind_detail[0] + ') has an upcoming birthday'
+            print(output)
+            #listToStr = '\n'.join([str(elem) for elem in ret_ind])
+            #print(listToStr)
             ret_val = True
 
     #print(listToStr)
     with open('gedcom_output.txt', 'a') as f:
-        f.write(listToStr)
+        f.write(output)
         f.write('\n')
 
-    return listToStr
+    return output
 
 
 #US31 List Living Single: List all living people over 30 who have never been

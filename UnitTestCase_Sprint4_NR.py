@@ -17,7 +17,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_name = 'Joseph Stevens'
         ind_sex = 'M'
         ind_dob = date(1900, 1, 1)
-        ind_dod = date(2022, 9, 1)
+        ind_dod = date(2022, 10, 1)
         ind_famc = ''
         ind_fams = ''
 
@@ -40,7 +40,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_name = 'Steven Philip'
         ind_sex = 'M'
         ind_dob = date(1810, 1, 1)
-        ind_dod = date(2022, 10, 10)
+        ind_dod = date(2022, 11, 10)
         ind_famc = ''
         ind_fams = ''
 
@@ -63,7 +63,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_name = 'James Bond'
         ind_sex = 'M'
         ind_dob = date(1850, 1, 1)
-        ind_dod = date(2022, 10, 10)
+        ind_dod = date(2022, 11, 10)
         ind_famc = ''
         ind_fams = ''
 
@@ -88,7 +88,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_id = 'I103'
         ind_name = 'Captain Marvel'
         ind_sex = 'F'
-        ind_dob = date(2000, 10, 3)
+        ind_dob = date(2000, 12, 29)
         ind_dod = ''
         ind_famc = ''
         ind_fams = ''
@@ -112,7 +112,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_id = 'I103'
         ind_name = 'Steve Rogers'
         ind_sex = 'F'
-        ind_dob = date(2000, 10, 20)
+        ind_dob = date(2000, 11, 20)
         ind_dod = ''
         ind_famc = ''
         ind_fams = ''
@@ -137,7 +137,7 @@ class ged_com_unit_test(unittest.TestCase):
         ind_id = 'I103'
         ind_name = 'Tony Stark'
         ind_sex = 'M'
-        ind_dob = date(2002, 10, 15)
+        ind_dob = date(2002, 11, 25)
         ind_dod = ''
         ind_famc = ''
         ind_fams = ''
